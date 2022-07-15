@@ -110,5 +110,5 @@ func attack():
 func attack_action(current_attack):
 	Global.e_move = attack_types[current_attack]
 	add_child(current_attack.instance())
-	deck.remove(0)
+	deck.pop_front()
 	Global.turn = Global.Turns.TURN_RESULTS   
