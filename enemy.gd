@@ -94,18 +94,14 @@ func _process(delta):
 		randomize()
 		deck.shuffle()
 func results():
-	if Global.turn=="turn_results":
+	if Global.turn==Global.Turns.TURN_RESULTS:
 		enemy_hp=enemy_hp-Global.e_damage
 		Global.player_hp=Global.player_hp-Global.damage
-		print(enemy_hp," enemy_hp")
-		print(Global.player_hp," player_hp")
-		print(Global.damage," player_damage")
-		print(Global.e_damage," enemy_damage")
-		Global.turn="pre_player"
+		Global.turn=Global.Turns.PRE_PLAYER
 
 
 func attack():
-	if Global.turn != "enemy":
+	if Global.turn != Global.Turns.ENEMY:
 		return
 	var current_attack = deck[0]
 	if current_attack in attack_types: 
@@ -115,4 +111,4 @@ func attack_action(current_attack):
 	Global.e_move = attack_types[current_attack]
 	add_child(current_attack.instance())
 	deck.remove(0)
-	Global.turn = "results"   
+	Global.turn = Global.Turns.TURN_RESULTS   
